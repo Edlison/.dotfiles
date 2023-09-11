@@ -1,18 +1,6 @@
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
 [user]
 	name = Edlison
 	email = bolin.edlison.shen@gmail.com
-[credential]
-	helper = store
-[http]
-	sslBackend = openssl
-	sslVerify = false
-[https]
-  sslVerify = false
 [alias]
   s=status
   a=!git add . && git status
