@@ -1,13 +1,21 @@
 # .dotfiles
 ## Usage
+zsh
 ```sh
-git clone
 # using zsh
 cp .zshrc ..
-# using bash (if you can not change your shell)
+# init
+zsh
+```
+
+bash only (in case you don't have permission to change your shell)
+```sh
+# using bash
 cat .bashrc >> ~/.bashrc
-# gitconfig
+# git config
 cp git/.gitconfig ..
+# tmux config
+cp tmux/.tmux.conf ..
 ```
 
 ## Before Cloning
@@ -27,4 +35,16 @@ Mount conda on zsh:
 
 ### Git Auth
 Upload private key to `~/.ssh/keys`  
-Modify `~/.ssh/config`
+
+Modify `~/.ssh/config`: 
+```
+Host gh
+HostName github.com
+User git
+IdentityFile ~/.ssh/keys/your_key
+```
+
+Test connection:
+```sh
+ssh -T git@gh
+```
