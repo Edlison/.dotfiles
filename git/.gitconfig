@@ -1,6 +1,6 @@
 [user]
 	name = Edlison
-	email = bolin.edlison.shen@gmail.com
+	email = blshen@msn.com
 [alias]
   s=status
   a=!git add . && git status
