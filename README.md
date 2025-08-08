@@ -2,8 +2,8 @@
 ## Usage
 zsh
 ```sh
-# using zsh
-cp .zshrc ..
+# add this to .zshrc
+source ~/.dotfiles/.zshrc
 # init
 zsh
 ```
