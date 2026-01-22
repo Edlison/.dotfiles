@@ -5,16 +5,13 @@ Personal dotfiles managed with zsh and oh-my-zsh.
 ## Quick Install
 
 ```sh
-# Clone and run install script
-cd ~
-git clone https://github.com/Edlison/.dotfiles.git
-bash .dotfiles/install.sh
+curl -fsSL https://iid.sh/dot/install.sh | bash
 ```
 
 Or run directly (after cloning):
 
 ```sh
-bash ~/.dotfiles/install.sh
+bash install.sh
 ```
 
 The install script will:
@@ -27,11 +24,12 @@ The install script will:
 ## Uninstall
 
 ```sh
-# Remove symlinks and restore backups if present
-bash ~/.dotfiles/uninstall.sh
+curl -fsSL https://iid.sh/dot/uninstall.sh | bash
+```
 
-# Optional: also remove ~/.dotfiles and/or ~/.oh-my-zsh
-bash ~/.dotfiles/uninstall.sh --remove-dotfiles --remove-omz
+Optional: also remove ~/.dotfiles and/or ~/.oh-my-zsh
+```
+bash uninstall.sh --remove-dotfiles --remove-omz
 ```
 
 ## Prerequisites
