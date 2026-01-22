@@ -41,3 +41,4 @@ create_link() {
 # Create symlinks for config files
 create_link "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
 create_link "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+create_link "$DOTFILES/vim/.vimrc" "$HOME/.vimrc"

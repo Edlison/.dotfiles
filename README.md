@@ -6,9 +6,9 @@ Personal dotfiles managed with zsh and oh-my-zsh.
 
 ```sh
 # Clone and run install script
-git clone https://github.com/edlison/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-bash install.sh
+cd ~
+git clone https://github.com/Edlison/.dotfiles.git
+bash .dotfiles/install.sh
 ```
 
 Or run directly (after cloning):
@@ -21,22 +21,31 @@ The install script will:
 1. Check if zsh is installed
 2. Install oh-my-zsh if not present
 3. Clone/update dotfiles into `~/.dotfiles` (requires git)
-4. Create symlinks for config files (`.gitconfig`, `.tmux.conf`)
+4. Create symlinks for config files (`.gitconfig`, `.tmux.conf`, `.vimrc`)
 5. Link `.zshrc` to the dotfiles version
+
+## Uninstall
+
+```sh
+# Remove symlinks and restore backups if present
+bash ~/.dotfiles/uninstall.sh
+
+# Optional: also remove ~/.dotfiles and/or ~/.oh-my-zsh
+bash ~/.dotfiles/uninstall.sh --remove-dotfiles --remove-omz
+```
 
 ## Prerequisites
 
-### ZSH
-Please refer to [Installing ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
-
-### Git
-Required for cloning the repository.
+- ZSH [Link](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+- Git
+- Vim
 
 ## Structure
 
 ```
 .dotfiles/
 ├── install.sh          # Installation script
+├── uninstall.sh        # Uninstall script
 ├── .zshrc              # Main zsh config (entry point)
 ├── .bashrc             # Bash fallback
 ├── zsh/
@@ -46,8 +55,10 @@ Required for cloning the repository.
 │   └── links.zsh       # Symlink setup (called by install.sh)
 ├── git/
 │   └── .gitconfig      # Git configuration
-└── tmux/
-    └── .tmux.conf      # Tmux configuration
+├── tmux/
+│   └── .tmux.conf      # Tmux configuration
+└── vim/
+    └── .vimrc          # Vim configuration
 ```
 
 ## Manual Setup (Bash only)
@@ -88,10 +99,3 @@ Host gh
 ```sh
 ssh -T git@gh
 ```
-
-## Customization
-
-- **Theme**: Edit `ZSH_THEME` in `zsh/settings.zsh`
-- **Plugins**: Edit `plugins=()` in `zsh/settings.zsh`
-- **Aliases**: Add to `zsh/alias.zsh`
-- **Environment variables**: Add to `zsh/envs.zsh`
