@@ -26,3 +26,26 @@ else
     warn "curl not found; skipping pyenv install"
     warn "Manual: curl https://pyenv.run | bash"
 fi
+
+ZSHRC="$HOME/.zshrc"
+PYENV_PATH_LINE='export PATH="$HOME/.pyenv/bin:$PATH"'
+PYENV_PATH_COMMENT="# pyenv"
+PYENV_INIT_LINE='eval "$(pyenv init -)"'
+
+if [ -f "$ZSHRC" ]; then
+    if ! grep -Fqs "$PYENV_PATH_LINE" "$ZSHRC"; then
+        printf "\n%s\n%s\n" "$PYENV_PATH_COMMENT" "$PYENV_PATH_LINE" >> "$ZSHRC"
+        info "Added pyenv PATH to $ZSHRC"
+    else
+        info "pyenv PATH already present in $ZSHRC"
+    fi
+
+    if ! grep -Fqs "$PYENV_INIT_LINE" "$ZSHRC"; then
+        printf "%s\n" "$PYENV_INIT_LINE" >> "$ZSHRC"
+        info "Added pyenv init to $ZSHRC"
+    else
+        info "pyenv init already present in $ZSHRC"
+    fi
+else
+    warn "$ZSHRC not found; skipping PATH update"
+fi
