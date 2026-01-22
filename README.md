@@ -73,6 +73,33 @@ bash zsh/links.zsh
 
 ## Additional Setup
 
+### Extensions
+
+This repo supports optional extensions to keep the base lightweight.
+To install extensions, run:
+
+```sh
+sh extensions/install.sh
+```
+
+**pyenv**
+
+Usage example:
+
+```sh
+pyenv install 3.12.3
+pyenv global 3.12.3
+```
+
+**uv**
+
+Usage example:
+
+```sh
+uv venv
+uv add numpy
+```
+
 ### Conda
 
 If using Anaconda/Miniconda:
