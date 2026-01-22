@@ -1,50 +1,97 @@
 # .dotfiles
-## Usage
-zsh
+
+Personal dotfiles managed with zsh and oh-my-zsh.
+
+## Quick Install
+
 ```sh
-# add this to .zshrc
-source ~/.dotfiles/.zshrc
-# init
-zsh
+# Clone and run install script
+git clone https://github.com/edlison/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+bash install.sh
 ```
 
-bash only (in case you don't have permission to change your shell)
+Or run directly (after cloning):
+
 ```sh
-# using bash
+bash ~/.dotfiles/install.sh
+```
+
+The install script will:
+1. Check if zsh is installed
+2. Install oh-my-zsh if not present
+3. Clone/update dotfiles into `~/.dotfiles` (requires git)
+4. Create symlinks for config files (`.gitconfig`, `.tmux.conf`)
+5. Link `.zshrc` to the dotfiles version
+
+## Prerequisites
+
+### ZSH
+Please refer to [Installing ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+
+### Git
+Required for cloning the repository.
+
+## Structure
+
+```
+.dotfiles/
+├── install.sh          # Installation script
+├── .zshrc              # Main zsh config (entry point)
+├── .bashrc             # Bash fallback
+├── zsh/
+│   ├── settings.zsh    # oh-my-zsh settings, theme, plugins
+│   ├── alias.zsh       # Custom aliases
+│   ├── envs.zsh        # Environment variables
+│   └── links.zsh       # Symlink setup (called by install.sh)
+├── git/
+│   └── .gitconfig      # Git configuration
+└── tmux/
+    └── .tmux.conf      # Tmux configuration
+```
+
+## Manual Setup (Bash only)
+
+If you don't have permission to use zsh:
+
+```sh
+# Append bash config
 cat .bashrc >> ~/.bashrc
-# git config
-cp git/.gitconfig ..
-# tmux config
-cp tmux/.tmux.conf ..
+
+# Create config symlinks manually
+bash zsh/links.zsh
 ```
 
-## Before Cloning
-### ZSH Installation
-Please refer to [installing ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+## Additional Setup
 
-### OMZ Installation
-Please refer to [installing oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+### Conda
 
-### Conda Installation
-Please refer to [installing anaconda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html)
+If using Anaconda/Miniconda:
 
-Mount conda on zsh:
 ```sh
 /path/to/anaconda/bin/conda init zsh
 ```
 
-### Git Auth
-Upload private key to `~/.ssh/keys`  
+### Git SSH Auth
 
-Modify `~/.ssh/config`: 
+1. Upload your private key to `~/.ssh/keys/`
+
+2. Add to `~/.ssh/config`:
 ```
 Host gh
-HostName github.com
-User git
-IdentityFile ~/.ssh/keys/your_key
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/keys/your_key
 ```
 
-Test connection:
+3. Test connection:
 ```sh
 ssh -T git@gh
 ```
+
+## Customization
+
+- **Theme**: Edit `ZSH_THEME` in `zsh/settings.zsh`
+- **Plugins**: Edit `plugins=()` in `zsh/settings.zsh`
+- **Aliases**: Add to `zsh/alias.zsh`
+- **Environment variables**: Add to `zsh/envs.zsh`
